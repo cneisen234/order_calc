@@ -6,9 +6,8 @@ $(document).ready(function () {
 function getProgress() {
   console.log("I am clicked")
   //grabs info from server and populates on DOM
-    let progress = response.offset + 10;
     $("#progress").append(
-      `<p>Updating Columns: ${response.offset} - ${progress} of ${response.rowCount}</p>`
+      `<p>Updating Columns:  -  of </p>`
     );
   $.ajax({
     type: "GET",
