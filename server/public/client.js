@@ -5,12 +5,14 @@ $(document).ready(function () {
 
 function getProgress() {
   console.log("I am clicked")
+   $("#progress").append(`<p>The import has started, please wait</p>`);
   //grabs info from server and populates on DOM
   $.ajax({
     type: "GET",
     url: "/progress",
   }).then(function (response) {
     console.log("this is the response", response)
-    $("#progress").append(`<p>Updating Columns:  -  of </p>`);
+     $("#progress").empty();
+    $("#progress").append(`<p>The import has been completed</p>`);
   });
 } // end getList
