@@ -5,6 +5,8 @@ $(document).ready(function () {
 
 function getProgress() {
   console.log("I am clicked")
+  $("#progress").empty();
+  $("#thisclears").empty();
    $("#progress").append(`<p>The import has started, please wait</p>`);
   //grabs info from server and populates on DOM
   $.ajax({
