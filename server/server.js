@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("server/public"));
 
-const creds = require('./client_secret.json')
+const creds = require('../client_secret.json')
 app.get("/progress", (req, res) => {
   function printReport(report) {
     let sku = report.sku;
