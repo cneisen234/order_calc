@@ -122,6 +122,7 @@ app.get("/progress", (req, res) => {
       offset += 10;
       accessSpreadsheet();
       console.log("offset is", offset);
+      res.send(offset)
       getReport();
     }, 10000);
   }
