@@ -22,7 +22,7 @@ const creds = {
   client_x509_cert_url:
     "https://www.googleapis.com/robot/v1/metadata/x509/sheets%40order-calc.iam.gserviceaccount.com",
 };
-app.get("/progress", (req, res) => {
+// app.get("/progress", (req, res) => {
   function printReport(report) {
     let sku = report.sku;
     let items = report.items;
@@ -71,7 +71,11 @@ app.get("/progress", (req, res) => {
       const doc = new GoogleSpreadsheet(
         process.env.SPREADSHEET
       );
+      try {
       await promisify(doc.useServiceAccountAuth)(creds);
+      } catch (error) {
+        console.log("first promise failed", error)
+      }
       const info = await promisify(doc.getInfo)();
       const sheet = info.worksheets[0];
       console.log("im running");
@@ -139,7 +143,7 @@ app.get("/progress", (req, res) => {
     }, 10000);
   }
   getReport();
-});
+// });
    //loading on port 5000
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
