@@ -12,8 +12,8 @@ function getProgress() {
   }).then(function (response) {
     let progress = response.offset + 10;
     $("#progress").append(
-      `<section class="container-fluid"><div class="row smallBorder"><div class="col-12 smallBorder">Updating Columns: ${response.offset} - ${progress} of ${response.rowCount}</div></div>
-                        </section>`
+`<p>Updating Columns: ${response.offset} - ${progress} of ${response.rowCount}</p>
+                        `
     );
   });
 } // end getList
