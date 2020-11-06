@@ -11,7 +11,6 @@ function getProgress() {
     type: "GET",
     url: "/progress",
   }).then(function (response) {
-    console.log("this is the response", response)
      $("#progress").empty();
     $("#progress").append(`<p>The import has been completed</p>`);
   });
