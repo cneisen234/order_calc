@@ -56,7 +56,7 @@ app.get("/progress", (req, res) => {
   function getReport() {
     async function accessSpreadsheet() {
       const doc = new GoogleSpreadsheet(
-        "1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI"
+        process.env.SPREADSHEET
       );
       await promisify(doc.useServiceAccountAuth)(creds);
       const info = await promisify(doc.getInfo)();
