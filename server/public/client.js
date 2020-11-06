@@ -6,14 +6,14 @@ $(document).ready(function () {
 function getProgress() {
   console.log("I am clicked")
   //grabs info from server and populates on DOM
+    let progress = response.offset + 10;
+    $("#progress").append(
+      `<p>Updating Columns: ${response.offset} - ${progress} of ${response.rowCount}</p>`
+    );
   $.ajax({
     type: "GET",
     url: "/progress",
   }).then(function (response) {
-    let progress = response.offset + 10;
-    $("#progress").append(
-`<p>Updating Columns: ${response.offset} - ${progress} of ${response.rowCount}</p>
-                        `
-    );
+  
   });
 } // end getList
