@@ -1,0 +1,46 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Calculation App</title>
+    <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
+    <!--JQuery-->
+    <!-- <script src="vendors/sweetalert.min.js"></script> -->
+    <!--Sweet Alerts-->
+    <!-- <script src="vendors/moment.min.js"></script> -->
+    <!--moment-->
+    <script src="client.js" charset="utf-8"></script>
+    <!--JavaScript-->
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <!--Google Fonts-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="styles.css">
+    <!--CSS-->
+</head>
+
+<body class="container-fluid">
+    <!--large header at top-->
+    <main class="jumbotron">
+        <main class="row">
+            <!--large letters at top-->
+            <p id="jumboTitle" class="col-12">Run report by pushing the button below</p>
+        </main>
+        <main class="row">
+            <!--add task button-->
+            <button id="start" class="btn btn-info col-lg-3 col-md-12">Run Report</button>
+            <!--location of clock-->
+            <header id="time" class="col-lg-9 col-md-12"></header>
+        </main>
+    </main>
+    <!--placeholder divs for when tasks populate, refer to client.js-->
+    <main class="row">
+        <main class="col-lg-4 col-md-12">
+            <p>Progress</p></br>
+            <main id="progress" class="col-12"></main>
+        </main>
+        
+</body>
+
+</html>
