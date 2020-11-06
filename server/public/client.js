@@ -10,6 +10,7 @@ function getProgress() {
     type: "GET",
     url: "/progress",
   }).then(function (response) {
+    console.log("this is the response", response)
     $("#progress").append(`<p>Updating Columns:  -  of </p>`);
   });
 } // end getList
