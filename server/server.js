@@ -3,13 +3,26 @@ const { promisify } = require('util')
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+require("dotenv").config();
 
 // set up our middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("server/public"));
 
-const creds = require('../client_secret.json')
-app.get("/progress", (req, res) => {
+const creds = {
+  type: "service_account",
+  project_id: process.env.PROJECTID,
+  private_key_id: process.env.PRIVATEKEYID,
+  private_key:process.env.PRIVATEKEY,
+  client_email: process.env.CLIENTEMAIL,
+  client_id: process.env.CLIENTID,
+  auth_uri: "https://accounts.google.com/o/oauth2/auth",
+  token_uri: "https://oauth2.googleapis.com/token",
+  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+  client_x509_cert_url:
+    "https://www.googleapis.com/robot/v1/metadata/x509/sheets%40order-calc.iam.gserviceaccount.com",
+};
+// app.get("/progress", (req, res) => {
   function printReport(report) {
     let sku = report.sku;
     let items = report.items;
@@ -122,12 +135,11 @@ app.get("/progress", (req, res) => {
       offset += 10;
       accessSpreadsheet();
       console.log("offset is", offset);
-      res.send(offset)
       getReport();
     }, 10000);
   }
   getReport();
-});
+// });
    //loading on port 5000
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
