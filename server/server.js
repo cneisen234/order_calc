@@ -67,7 +67,7 @@ app.get("/progress", (req, res) => {
   let offset = -9;
   let stopVar = false;
 
-  // function getReport() {
+  function getReport() {
     async function accessSpreadsheet() {
       const doc = new GoogleSpreadsheet(
         "1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI"
@@ -86,7 +86,7 @@ app.get("/progress", (req, res) => {
       if (offset <= rowCount) {
         console.log("and I'm running to");
         const rows = await promisify(sheet.getRows)({
-          offset: 1,
+          offset: offset,
           limit: 10,
         });
         rows.forEach((row) => {
@@ -133,20 +133,20 @@ app.get("/progress", (req, res) => {
         return;
       }
     }
-    // setTimeout(() => {
-    //   if (stopVar === true) {
-    //     return;
-    //   }
-    //   offset += 10;
-    //   accessSpreadsheet();
-    //   console.log("offset is", offset);
-    //   getReport();
-    // }, 10000);
+    setTimeout(() => {
+      if (stopVar === true) {
+        return;
+      }
+      offset += 10;
+      accessSpreadsheet();
+      console.log("offset is", offset);
+      getReport();
+    }, 10000);
     accessSpreadsheet()
       .then(() => res.send("This worked!"))
       .catch((error) => res.send(`Error: ${error}`));
-  // }
-  // getReport();
+  }
+  getReport();
 });
    //loading on port 5000
 const PORT = process.env.PORT || 5000;
