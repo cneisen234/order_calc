@@ -15,7 +15,7 @@ function getProgress() {
   $("#progress").empty();
   $("#thisclears").empty();
   $("#progress").append(
-    `<p>The import has started, please refer to the spread <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0">here</a></p>`
+    `<p>The import has started, please refer to the spread <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a> DO NOT CLOSE THIS WINDOW</p>`
   );
     }).catch(function (error) {
       //runs if post request fails
