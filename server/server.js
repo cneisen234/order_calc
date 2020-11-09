@@ -24,7 +24,16 @@ const creds = {
 };
 
 app.get("/test", (req, res) => { 
-  console.log("yay! This worked!")
+  console
+    .log("yay! This worked!")
+    .then((result) => {
+      // result is the result of our query!
+      res.send(result.rows).status(200);
+    })
+    .catch((error) => {
+      console.log(`Error making query`);
+      res.sendStatus(500);
+    });
 })
 
 app.get("/progress", (req, res) => {
