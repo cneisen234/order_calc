@@ -12,8 +12,12 @@ function getProgress() {
   $.ajax({
     type: "GET",
     url: "/progress",
-  }).then(function (response) {
-     $("#progress").empty();
-    $("#progress").append(`<p>The import has been completed</p>`);
-  });
+  })
+    .then(function (response) {
+      $("#progress").empty();
+      $("#progress").append(`<p>The import has been completed</p>`);
+    }).catch(function (error) {
+      //runs if post request fails
+      console.log("this is the error", error)
+    });;
 } // end getList
