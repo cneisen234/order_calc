@@ -24,7 +24,7 @@ const creds = {
 };
 
 app.get("/test", (req, res) => { 
-  alert("yay! this worked!")
+  console.log("yay! This worked!")
 })
 
 app.get("/progress", (req, res) => {
