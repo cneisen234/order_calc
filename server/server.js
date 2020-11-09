@@ -23,19 +23,6 @@ const creds = {
     "https://www.googleapis.com/robot/v1/metadata/x509/sheets%40order-calc.iam.gserviceaccount.com",
 };
 
-app.get("/test", (req, res) => { 
-  console
-    .log("yay! This worked!")
-    .then((result) => {
-      // result is the result of our query!
-      res.send(result.rows).status(200);
-    })
-    .catch((error) => {
-      console.log(`Error making query`);
-      res.sendStatus(500);
-    });
-})
-
 app.get("/progress", (req, res) => {
   function printReport(report) {
     let sku = report.sku;
@@ -80,7 +67,7 @@ app.get("/progress", (req, res) => {
   let offset = -9;
   let stopVar = false;
 
-  function getReport() {
+  // function getReport() {
     async function accessSpreadsheet() {
       const doc = new GoogleSpreadsheet(
         process.env.SPREADSHEET
@@ -99,7 +86,7 @@ app.get("/progress", (req, res) => {
       if (offset <= rowCount) {
         console.log("and I'm running to");
         const rows = await promisify(sheet.getRows)({
-          offset: offset,
+          offset: 1,
           limit: 10,
         });
         rows.forEach((row) => {
@@ -146,17 +133,20 @@ app.get("/progress", (req, res) => {
         return;
       }
     }
-    setTimeout(() => {
-      if (stopVar === true) {
-        return;
-      }
-      offset += 10;
-      accessSpreadsheet();
-      console.log("offset is", offset);
-      getReport();
-    }, 10000);
-  }
-  getReport();
+    // setTimeout(() => {
+    //   if (stopVar === true) {
+    //     return;
+    //   }
+    //   offset += 10;
+    //   accessSpreadsheet();
+    //   console.log("offset is", offset);
+    //   getReport();
+    // }, 10000);
+    accessSpreadsheet()
+      .then(() => res.send("This worked!"))
+      .catch((error) => res.send(`Error: ${error}`));
+  // }
+  // getReport();
 });
    //loading on port 5000
 const PORT = process.env.PORT || 5000;
