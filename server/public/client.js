@@ -1,9 +1,29 @@
 $(document).ready(function () {
-  $("#start").on("click", getProgress);
+  // $("#start").on("click", getProgress);
+  $("#start").on("click", test);
   // load existing list items on page load
 }); // end doc ready
 
-function getProgress() {
+// function getProgress() {
+//   console.log("I am clicked")
+//   $("#progress").empty();
+//   $("#thisclears").empty();
+//    $("#progress").append(`<p>The import has started, please wait</p>`);
+//   //grabs info from server and populates on DOM
+//   $.ajax({
+//     type: "GET",
+//     url: "/progress",
+//   })
+//     .then(function (response) {
+//       $("#progress").empty();
+//       $("#progress").append(`<p>The import has been completed</p>`);
+//     }).catch(function (error) {
+//       //runs if post request fails
+//       console.log("this is the error", error)
+//     });;
+// } // end getList
+
+function test() {
   console.log("I am clicked")
   $("#progress").empty();
   $("#thisclears").empty();
@@ -11,7 +31,7 @@ function getProgress() {
   //grabs info from server and populates on DOM
   $.ajax({
     type: "GET",
-    url: "/progress",
+    url: "/test",
   })
     .then(function (response) {
       $("#progress").empty();

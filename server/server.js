@@ -22,6 +22,11 @@ const creds = {
   client_x509_cert_url:
     "https://www.googleapis.com/robot/v1/metadata/x509/sheets%40order-calc.iam.gserviceaccount.com",
 };
+
+app.get("/test", (req, res) => { 
+  alert("yay! this worked!")
+})
+
 app.get("/progress", (req, res) => {
   function printReport(report) {
     let sku = report.sku;
