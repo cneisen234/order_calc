@@ -6,18 +6,17 @@ $(document).ready(function () {
 
 function getProgress() {
   console.log("I am clicked")
-  $("#progress").empty();
-  $("#thisclears").empty();
-   $("#progress").append(`<p>The import has started, please wait</p>`);
   //grabs info from server and populates on DOM
   $.ajax({
     type: "GET",
     url: "/progress",
   })
     .then(function (response) {
-      console.log(response)
-      $("#progress").empty();
-      $("#progress").append(`<p>The import has been completed</p>`);
+  $("#progress").empty();
+  $("#thisclears").empty();
+  $("#progress").append(
+    `<p>The import has started, please refer to the spread <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0">here</a></p>`
+  );
     }).catch(function (error) {
       //runs if post request fails
       console.log("this is the error", error)
