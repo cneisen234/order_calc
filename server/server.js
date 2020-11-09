@@ -143,7 +143,7 @@ app.get("/progress", (req, res) => {
       getReport();
     }, 10000);
     accessSpreadsheet()
-      .then(() => res.send("This worked!"))
+        res.send(result.rows).status(200)
       .catch((error) => res.send(`Error: ${error}`));
   }
   getReport();
