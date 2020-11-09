@@ -24,7 +24,7 @@ $(document).ready(function () {
 // } // end getList
 
 function test() {
-  console.log("I am clicked")
+  console.log("I am testing")
   $("#progress").empty();
   $("#thisclears").empty();
    $("#progress").append(`<p>The import has started, please wait</p>`);
