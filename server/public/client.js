@@ -15,6 +15,7 @@ function getProgress() {
     url: "/progress",
   })
     .then(function (response) {
+      console.log(response)
       $("#progress").empty();
       $("#progress").append(`<p>The import has been completed</p>`);
     }).catch(function (error) {
