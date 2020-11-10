@@ -39,7 +39,7 @@ app.get("/progress", (req, res) => {
     console.log(`lastsku2: ${lastsku2}`);
     console.log(`lastsku3: ${lastsku3}`);
     console.log(`items: ${items}`);
-    console.log(`total 50 ${report.calc}`);
+    console.log(`total 50 ${report.yardrolls}`);
     if (lastsku3 === "Sheet" || lastsku3 === "SHEET") {
       let calc = items / 150;
       console.log("this is calc for Sheet", calc);
@@ -104,26 +104,26 @@ app.get("/progress", (req, res) => {
             lastsku3 === "sheet"
           ) {
             let calc = items / 150;
-            row.calc = calc;
+            row.yardrolls = calc;
             row.save();
           } else if (lastsku2 === 10) {
             let calc = items / 5;
-            row.calc = calc;
+            row.yardrolls = calc;
             row.save();
           } else if (lastsku2 === 25) {
             let calc = items / 2;
-            row.calc = calc;
+            row.yardrolls = calc;
             row.save();
           } else if (lastsku2 === 50) {
-            row.calc = items;
+            row.yardrolls = items;
             row.save();
           } else if (lastsku === 1) {
             let calc = items / 50;
-            row.calc = calc;
+            row.yardrolls = calc;
             row.save();
           } else if (lastsku === 5) {
             let calc = items / 10;
-            row.calc = calc;
+            row.yardrolls = calc;
             row.save();
           }
           printReport(row);
@@ -233,6 +233,167 @@ app.get("/art", (req, res) => {
       .catch((error) => res.send(`Error: ${error}`));
   }
   getArtReport();
+});
+
+app.get("/therm", (req, res) => {
+  function printThermReport(report) {
+    let sku = report.sku;
+    let items = report.items;
+    let lastsku = sku.slice(sku.length - 1);
+    let lastsku2 = sku.slice(sku.length - 2);
+    let lastsku3 = sku.slice(sku.length - 5);
+    items = Number(items);
+    lastsku = Number(lastsku);
+    lastsku2 = Number(lastsku2);
+    console.log(`sku: ${sku}`);
+    console.log(`lastsku: ${lastsku}`);
+    console.log(`lastsku2: ${lastsku2}`);
+    console.log(`lastsku3: ${lastsku3}`);
+    console.log(`items: ${items}`);
+    console.log(`total 30 ${report.thirtyyards}`);
+    console.log(`total 50 ${report.fiftyyards}`);
+    if (lastsku3 === "Sheet" || lastsku3 === "SHEET" || lastsku3 === "sheet") {
+      let thirty = items / 90;
+      let fifty = items / 150;
+        console.log("this is calc for Sheet for 30", thirty);
+        console.log("this is calc for Sheet for 50", fifty);
+      } else if (lastsku2 === 10) {
+        let thirty = items / 3;
+        let fifty = items / 5;
+        console.log("this is calc for 10 for 30 yard rolls", thirty);
+        console.log("this is calc for 10 for 50 yard rolls", fifty);
+      } else if (lastsku2 === 20) {
+        let thirty = items / 1.5;
+        let fifty = items / 2.5;
+        console.log("this is calc for 20 for 30 yard rolls", thirty);
+        console.log("this is calc for 20 for 50 yard rolls", fifty);
+      } else if (lastsku2 === 30) {
+        let thirty = items / 1;
+        let fifty = items / 1.6;
+        console.log("this is calc for 30 for 30 yard rolls", thirty);
+        console.log("this is calc for 30 for 50 yard rolls", fifty);
+      } else if (lastsku2 === 50) {
+        let thirty = items * 1.67;
+        let fifty = items / 1;
+        console.log("this is calc for 50 for 30 yard rolls", thirty);
+        console.log("this is calc for 50 for 50 yard rolls", fifty);
+      } else if (lastsku === 1) {
+        let thirty = items / 30;
+        let fifty = items / 50;
+        console.log("this is calc for 1 for 30 yard rolls", thirty);
+        console.log("this is calc for 1 for 50 yard rolls", fifty);
+      } else if (lastsku === 5) {
+        let thirty = items / 6;
+        let fifty = items / 10;
+        console.log("this is calc for 5 for 30 yard rolls", thirty);
+        console.log("this is calc for 5 for 50 yard rolls", fifty);
+      }
+    console.log("offset is", offset);
+    console.log(`---------------------------`);
+  }
+
+  let offset = -9;
+  let stopVar = false;
+
+  function getThermReport() {
+    async function accessSpreadsheet() {
+      const doc = new GoogleSpreadsheet(
+        "1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI"
+      );
+      try {
+        await promisify(doc.useServiceAccountAuth)(creds);
+      } catch (error) {
+        console.log("first promise failed", error);
+      }
+      const info = await promisify(doc.getInfo)();
+      const sheet = info.worksheets[2];
+      console.log("im running");
+      let rowCount = sheet.rowCount;
+      rowCountGlobal = rowCount;
+      console.log(rowCount);
+      if (offset <= rowCount) {
+        console.log("and I'm running to");
+        const rows = await promisify(sheet.getRows)({
+          offset: offset,
+          limit: 10,
+        });
+        rows.forEach((row) => {
+          let sku = row.sku;
+          let items = row.items;
+          let lastsku = sku.slice(sku.length - 1);
+          let lastsku2 = sku.slice(sku.length - 2);
+          let lastsku3 = sku.slice(sku.length - 5);
+          items = Number(items);
+          lastsku = Number(lastsku);
+          lastsku2 = Number(lastsku2);
+          if (
+            lastsku3 === "Sheet" ||
+            lastsku3 === "SHEET" ||
+            lastsku3 === "sheet"
+          ) {
+            let thirty = items / 90;
+            let fifty = items / 150;
+            row.thirtyyards = thirty;
+            row.fiftyyards = fifty;
+            row.save();
+          } else if (lastsku2 === 10) {
+             let thirty = items / 3;
+             let fifty = items / 5;
+             row.thirtyyards = thirty;
+             row.fiftyyards = fifty;
+            row.save();
+          } else if (lastsku2 === 20) {
+            let thirty = items / 1.5;
+            let fifty = items / 2.5;
+            row.thirtyyards = thirty;
+            row.fiftyyards = fifty;
+            row.save();
+          } else if (lastsku2 === 30) {
+            let thirty = items / 1;
+            let fifty = items / 1.6;
+            row.thirtyyards = thirty;
+            row.fiftyyards = fifty;
+            row.save();
+          } else if (lastsku2 === 50) {
+            let thirty = items * 1.67;
+            let fifty = items / 1;
+            row.thirtyyards = thirty;
+            row.fiftyyards = fifty;
+            row.save();
+          } else if (lastsku === 1) {
+           let thirty = items / 30;
+           let fifty = items / 50;
+           row.thirtyyards = thirty;
+           row.fiftyyards = fifty;
+            row.save();
+          } else if (lastsku === 5) {
+            let thirty = items / 6;
+            let fifty = items / 10;
+            row.thirtyyards = thirty;
+            row.fiftyyards = fifty;
+            row.save();
+          }
+          printThermReport(row);
+        });
+      } else {
+        stopVar = true;
+        return;
+      }
+    }
+    setTimeout(() => {
+      if (stopVar === true) {
+        return;
+      }
+      offset += 10;
+      accessSpreadsheet();
+      console.log("offset is", offset);
+      getThermReport();
+    }, 10000);
+    accessSpreadsheet()
+      .then(() => res.send("This worked!"))
+      .catch((error) => res.send(`Error: ${error}`));
+  }
+  getThermReport();
 });
    //loading on port 5000
 const PORT = process.env.PORT || 5000;
