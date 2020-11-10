@@ -39,7 +39,7 @@ app.get("/progress", (req, res) => {
     console.log(`lastsku2: ${lastsku2}`);
     console.log(`lastsku3: ${lastsku3}`);
     console.log(`items: ${items}`);
-    console.log(`total 50 ${report.yardrolls}`);
+    console.log(`total 50 ${report.calc}`);
     if (lastsku3 === "Sheet" || lastsku3 === "SHEET") {
       let calc = items / 150;
       console.log("this is calc for Sheet", calc);
@@ -104,26 +104,26 @@ app.get("/progress", (req, res) => {
             lastsku3 === "sheet"
           ) {
             let calc = items / 150;
-            row.yardrolls = calc;
+            row.calc = calc;
             row.save();
           } else if (lastsku2 === 10) {
             let calc = items / 5;
-            row.yardrolls = calc;
+            row.calc = calc;
             row.save();
           } else if (lastsku2 === 25) {
             let calc = items / 2;
-            row.yardrolls = calc;
+            row.calc = calc;
             row.save();
           } else if (lastsku2 === 50) {
-            row.yardrolls = items;
+            row.calc = items;
             row.save();
           } else if (lastsku === 1) {
             let calc = items / 50;
-            row.yardrolls = calc;
+            row.calc = calc;
             row.save();
           } else if (lastsku === 5) {
             let calc = items / 10;
-            row.yardrolls = calc;
+            row.calc = calc;
             row.save();
           }
           printReport(row);
@@ -147,6 +147,92 @@ app.get("/progress", (req, res) => {
       .catch((error) => res.send(`Error: ${error}`));
   }
   getReport();
+});
+
+app.get("/art", (req, res) => {
+  function printArtReport(report) {
+    let sku = report.sku;
+    let items = report.items;
+    let lastsku = sku.slice(sku.length - 1);
+    items = Number(items);
+    lastsku = Number(lastsku);
+    console.log(`sku: ${sku}`);
+    console.log(`lastsku: ${lastsku}`);
+    console.log(`items: ${items}`);
+    console.log(`total ${report.calc}`);
+    if (lastsku === 1) {
+      let calc = items / 50;
+      console.log("this is calc for 1", calc);
+    } else if (lastsku === 5) {
+      let calc = items / 10;
+      console.log("this is calc for 5", calc);
+    }
+    console.log("offset is", offset);
+    // console.log("limit is", limit);
+    console.log(`---------------------------`);
+  }
+
+  let offset = -9;
+  let stopVar = false;
+
+  function getArtReport() {
+    async function accessSpreadsheet() {
+      const doc = new GoogleSpreadsheet(
+        "1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI"
+      );
+      try {
+        await promisify(doc.useServiceAccountAuth)(creds);
+      } catch (error) {
+        console.log("first promise failed", error);
+      }
+      const info = await promisify(doc.getInfo)();
+      const sheet = info.worksheets[1];
+      console.log("im running");
+      let rowCount = sheet.rowCount;
+      rowCountGlobal = rowCount;
+      console.log(rowCount);
+      if (offset <= rowCount) {
+        console.log("and I'm running to");
+        const rows = await promisify(sheet.getRows)({
+          offset: offset,
+          limit: 10,
+        });
+        rows.forEach((row) => {
+          let sku = row.sku;
+          let items = row.items;
+          let lastsku = sku.slice(sku.length - 1);
+          items = Number(items);
+          lastsku = Number(lastsku);
+          if (lastsku === 1) {
+            let calc = items / 150;
+            row.calc = calc;
+            row.save();
+          } else if (lastsku === 5) {
+            let calc = items / 30;
+            row.calc = calc;
+            row.save();
+          }
+          printArtReport(row);
+        });
+      } else {
+        stopVar = true;
+        return;
+      }
+    }
+    setTimeout(() => {
+      if (stopVar === true) {
+        return;
+      }
+      offset += 10;
+      accessSpreadsheet();
+      console.log("offset is", offset);
+      getArtReport();
+    }, 10000);
+    accessSpreadsheet()
+      .then(() => res.send("This worked!"))
+      .catch((error) => res.send(`Error: ${error}`));
+  }
+  getArtReport();
 });
    //loading on port 5000
 const PORT = process.env.PORT || 5000;
