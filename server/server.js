@@ -135,6 +135,9 @@ app.get("/progress", (req, res) => {
     }
     setTimeout(() => {
       if (stopVar === true) {
+        app.get("/stopthis", (req, res) => {
+          console.log("I'm running stopthis")
+        });
         return;
       }
       offset += 10;
