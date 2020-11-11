@@ -14,7 +14,7 @@
     <!--moment-->
     <script src="client.js" charset="utf-8"></script>
     <!--JavaScript-->
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <!--Google Fonts-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!--Bootstrap-->
@@ -24,16 +24,17 @@
 
 <body class="container-fluid">
     <!--large header at top-->
-    <main class="jumbotron">
-        <main class="row">
+    <main class="row" id="black">
+        <main class="col-lg-2" id="white">
             <!--large letters at top-->
-            <p id="jumboTitle" class="col-12">Run report by pushing the button below</p>
+           <img src="https://cdn11.bigcommerce.com/s-et4qthkygq/images/stencil/177x60/htwlogo_web_1573140308__59565.original.png"
+                alt="HTW logo">
         </main>
-        <main class="row" id="thisclears">
+        <main class="col-lg-10" id="thisclears">
             <!--add task button-->
-            <button id="start" class="btn btn-info col-lg-4 col-md-12">Siser HTV Reporting</button>
-                        <button id="art" class="btn btn-info col-lg-4 col-md-12">Art Room</button>
-                        <button id="therm" class="btn btn-info col-lg-4 col-md-12">Thermoflex Plus</button>
+            <button id="start" class="btn btn-light col-lg-3 col-md-12">Siser HTV Reporting</button>
+                        <button id="art" class="btn btn-light col-lg-3 col-md-12">Art Room</button>
+                        <button id="therm" class="btn btn-light col-lg-3 col-md-12">Thermoflex Plus</button>
             <!--location of clock-->
             <header id="time" class="col-lg-9 col-md-12"></header>
         </main>
@@ -44,7 +45,9 @@
            </br>
             <main id="progress" class="col-12"></main>
         </main>
-        
+        <footer>
+            Copyright &copy; 2020 by Heat Transfer Warehouse
+        </footer>
 </body>
 
 </html>
