@@ -72,11 +72,8 @@ app.get("/progress", (req, res) => {
       const doc = new GoogleSpreadsheet(
         "1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI"
       );
-      try {
       await promisify(doc.useServiceAccountAuth)(creds);
-      } catch (error) {
-        console.log("first promise failed", error)
-      }
+ 
       const info = await promisify(doc.getInfo)();
       const sheet = info.worksheets[0];
       console.log("im running");
@@ -139,15 +136,12 @@ app.get("/progress", (req, res) => {
       }
       offset += 10;
       accessSpreadsheet();
-      console.log("rowCountGlobal is", rowCountGlobal)
       console.log("offset is", offset);
       getReport();
     }, 10000);
     accessSpreadsheet()
-      .then(() => res.send(rowCountGlobal))
-      .catch((error) => res.send(rowCountGlobal));
   }
-  getReport();
+  getReport()
 });
 
 app.get("/art", (req, res) => {
@@ -181,11 +175,7 @@ app.get("/art", (req, res) => {
       const doc = new GoogleSpreadsheet(
         "1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI"
       );
-      try {
         await promisify(doc.useServiceAccountAuth)(creds);
-      } catch (error) {
-        console.log("first promise failed", error);
-      }
       const info = await promisify(doc.getInfo)();
       const sheet = info.worksheets[1];
       console.log("im running");
@@ -226,15 +216,12 @@ app.get("/art", (req, res) => {
       }
       offset += 10;
       accessSpreadsheet();
-      console.log("rowCountGlobal is", rowCountGlobal);
       console.log("offset is", offset);
       getArtReport();
     }, 10000);
     accessSpreadsheet()
-      .then(() => res.send(rowCountGlobal))
-      .catch((error) => res.send(rowCountGlobal));
   }
-  getArtReport();
+  getArtReport()
 });
 
 app.get("/therm", (req, res) => {
@@ -299,87 +286,90 @@ app.get("/therm", (req, res) => {
 
   function getThermReport() {
     async function accessSpreadsheet() {
-      const doc = new GoogleSpreadsheet(
-        "1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI"
-      );
       try {
+        const doc = new GoogleSpreadsheet(
+          "1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI"
+        );
         await promisify(doc.useServiceAccountAuth)(creds);
-      } catch (error) {
-        console.log("first promise failed", error);
-      }
-      const info = await promisify(doc.getInfo)();
-      const sheet = info.worksheets[2];
-      console.log("im running");
-      let rowCount = sheet.rowCount;
-      rowCountGlobal = rowCount;
-      console.log(rowCount);
-      if (offset <= rowCount) {
-        console.log("and I'm running to");
-        const rows = await promisify(sheet.getRows)({
-          offset: offset,
-          limit: 10,
-        });
-        rows.forEach((row) => {
-          let sku = row.sku;
-          let items = row.items;
-          let lastsku = sku.slice(sku.length - 1);
-          let lastsku2 = sku.slice(sku.length - 2);
-          let lastsku3 = sku.slice(sku.length - 5);
-          items = Number(items);
-          lastsku = Number(lastsku);
-          lastsku2 = Number(lastsku2);
-          if (
-            lastsku3 === "Sheet" ||
-            lastsku3 === "SHEET" ||
-            lastsku3 === "sheet"
-          ) {
-            let thirty = items / 90;
-            let fifty = items / 150;
-            row.thirtyyards = thirty;
-            row.fiftyyards = fifty;
-            row.save();
-          } else if (lastsku2 === 10) {
-             let thirty = items / 3;
-             let fifty = items / 5;
-             row.thirtyyards = thirty;
-             row.fiftyyards = fifty;
-            row.save();
-          } else if (lastsku2 === 20) {
-            let thirty = items / 1.5;
-            let fifty = items / 2.5;
-            row.thirtyyards = thirty;
-            row.fiftyyards = fifty;
-            row.save();
-          } else if (lastsku2 === 30) {
-            let thirty = items / 1;
-            let fifty = items / 1.6;
-            row.thirtyyards = thirty;
-            row.fiftyyards = fifty;
-            row.save();
-          } else if (lastsku2 === 50) {
-            let thirty = items * 1.67;
-            let fifty = items / 1;
-            row.thirtyyards = thirty;
-            row.fiftyyards = fifty;
-            row.save();
-          } else if (lastsku === 1) {
-           let thirty = items / 30;
-           let fifty = items / 50;
-           row.thirtyyards = thirty;
-           row.fiftyyards = fifty;
-            row.save();
-          } else if (lastsku === 5) {
-            let thirty = items / 6;
-            let fifty = items / 10;
-            row.thirtyyards = thirty;
-            row.fiftyyards = fifty;
-            row.save();
-          }
-          printThermReport(row);
-        });
-      } else {
-        stopVar = true;
-        return;
+        const info = await promisify(doc.getInfo)();
+        const sheet = info.worksheets[2];
+        console.log("im running");
+        let rowCount = sheet.rowCount;
+        rowCountGlobal = rowCount;
+        console.log(rowCount);
+        if (offset <= rowCount) {
+          console.log("and I'm running to");
+          const rows = await promisify(sheet.getRows)({
+            offset: offset,
+            limit: 10,
+          });
+          rows.forEach((row) => {
+            let sku = row.sku;
+            let items = row.items;
+            let lastsku = sku.slice(sku.length - 1);
+            let lastsku2 = sku.slice(sku.length - 2);
+            let lastsku3 = sku.slice(sku.length - 5);
+            items = Number(items);
+            lastsku = Number(lastsku);
+            lastsku2 = Number(lastsku2);
+            if (
+              lastsku3 === "Sheet" ||
+              lastsku3 === "SHEET" ||
+              lastsku3 === "sheet"
+            ) {
+              let thirty = items / 90;
+              let fifty = items / 150;
+              row.thirtyyards = thirty;
+              row.fiftyyards = fifty;
+              row.save();
+            } else if (lastsku2 === 10) {
+              let thirty = items / 3;
+              let fifty = items / 5;
+              row.thirtyyards = thirty;
+              row.fiftyyards = fifty;
+              row.save();
+            } else if (lastsku2 === 20) {
+              let thirty = items / 1.5;
+              let fifty = items / 2.5;
+              row.thirtyyards = thirty;
+              row.fiftyyards = fifty;
+              row.save();
+            } else if (lastsku2 === 30) {
+              let thirty = items / 1;
+              let fifty = items / 1.6;
+              row.thirtyyards = thirty;
+              row.fiftyyards = fifty;
+              row.save();
+            } else if (lastsku2 === 50) {
+              let thirty = items * 1.67;
+              let fifty = items / 1;
+              row.thirtyyards = thirty;
+              row.fiftyyards = fifty;
+              row.save();
+            } else if (lastsku === 1) {
+              let thirty = items / 30;
+              let fifty = items / 50;
+              row.thirtyyards = thirty;
+              row.fiftyyards = fifty;
+              row.save();
+            } else if (lastsku === 5) {
+              let thirty = items / 6;
+              let fifty = items / 10;
+              row.thirtyyards = thirty;
+              row.fiftyyards = fifty;
+              row.save();
+            }
+            printThermReport(row);
+          });
+        } else {
+          stopVar = true;
+          return;
+        }
+        console.log("rowCountGlobal", rowCountGlobal)
+        rowCountGlobal = String(rowCountGlobal)
+        res.status(201).send(rowCountGlobal);
+      } catch (err) {
+       console.log("this is the error", err);
       }
     }
     setTimeout(() => {
@@ -388,15 +378,12 @@ app.get("/therm", (req, res) => {
       }
       offset += 10;
       accessSpreadsheet();
-      console.log("rowCountGlobal is", rowCountGlobal);
       console.log("offset is", offset);
       getThermReport();
     }, 10000);
     accessSpreadsheet()
-      .then(() => res.send(rowCountGlobal))
-      .catch((error) => res.send(rowCountGlobal));
   }
-  getThermReport();
+  getThermReport()
 });
    //loading on port 5000
 const PORT = process.env.PORT || 5000;
