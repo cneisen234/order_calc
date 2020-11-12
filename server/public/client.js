@@ -9,14 +9,6 @@ $(document).ready(function () {
 function endImport() {
        $("#progress").empty();
        $("#progress").append(`<p>The import has finished</p>`);
-         $("#thisclears").append(
-           `    <main class="col-lg-10" id="thisclears">
-            <button id="start" class="btn btn-light col-lg-3 col-md-12">Siser HTV Reporting</button>
-                        <button id="art" class="btn btn-light col-lg-3 col-md-12">Art Room</button>
-                        <button id="therm" class="btn btn-light col-lg-3 col-md-12">Thermoflex Plus</button>
-            <header id="time" class="col-lg-9 col-md-12"></header>
-        </main>`
-         );
 }
 
 function getProgress() {
