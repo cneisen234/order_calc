@@ -23,6 +23,10 @@ function getProgress() {
   console.log("I am clicked")
   $("#progress").empty();
    $("#thisclears").empty();
+     $("#progress").append(
+       `<p>The import for Siser reporting has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
+    WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
+     );
   $.ajax({
     type: "GET",
     url: "/progress",
@@ -32,10 +36,6 @@ function getProgress() {
       let timeout = Number(response)
       timeout *= 1000;
       console.log(timeout)
-  $("#progress").append(
-    `<p>The import for Siser reporting has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
-    WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
-  );
   setTimeout(() => {
     console.log("timeout works", timeout)
   }, timeout);
@@ -49,6 +49,10 @@ function getArtProgress() {
   console.log("I am clicked")
   $("#progress").empty();
    $("#thisclears").empty();
+     $("#progress").append(
+       `<p>The import for the art room has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
+    WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
+     );
   $.ajax({
     type: "GET",
     url: "/art",
@@ -58,10 +62,6 @@ function getArtProgress() {
             let timeout = Number(response);
             timeout *= 1000;
             console.log(timeout);
-  $("#progress").append(
-    `<p>The import for the art room has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
-    WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
-  );
     setTimeout(() => {
       console.log("timeout works", timeout);
     }, timeout);
@@ -76,6 +76,10 @@ function getThermProgress() {
   console.log("I am clicked")
   $("#progress").empty();
    $("#thisclears").empty();
+    $("#progress").append(
+      `<p>The import for the thermoflex plus has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
+    WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
+    );
   $.ajax({
     type: "GET",
     url: "/therm",
@@ -85,10 +89,6 @@ function getThermProgress() {
             let timeout = Number(response);
             timeout *= 1000;
             console.log(timeout);
-  $("#progress").append(
-    `<p>The import for the thermoflex plus has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
-    WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
-  );
     setTimeout(() => {
       console.log("timeout works", timeout);
     }, timeout);
