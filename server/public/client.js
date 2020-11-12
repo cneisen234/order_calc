@@ -30,7 +30,7 @@ function getProgress() {
     .then(function (response) {
       console.log("the response is", response)
       let timeout = Number(response)
-      timeout += 100
+      timeout += 1000
       console.log(timeout)
   $("#progress").append(
     `<p>The import for Siser reporting has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
@@ -56,7 +56,7 @@ function getArtProgress() {
     .then(function (response) {
       console.log("the response is", response)
             let timeout = Number(response);
-            timeout += 100;
+            timeout += 1000;
             console.log(timeout);
   $("#progress").append(
     `<p>The import for the art room has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
@@ -83,7 +83,7 @@ function getThermProgress() {
     .then(function (response) {
       console.log("the response is", response)
             let timeout = Number(response);
-            timeout += 100;
+            timeout += 1000;
             console.log(timeout);
   $("#progress").append(
     `<p>The import for the thermoflex plus has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
