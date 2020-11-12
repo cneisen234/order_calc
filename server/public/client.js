@@ -42,7 +42,7 @@ function getProgress() {
       //runs if post request fails
       console.log("this is the error", error)
     });
-    endImport();
+    // endImport();
 } // end getList
 
 function getArtProgress() {
@@ -63,7 +63,7 @@ function getArtProgress() {
       //runs if post request fails
       console.log("this is the error", error)
     });
-    endImport();
+    // endImport();
 } // end getList
 
 function getThermProgress() {
@@ -84,5 +84,5 @@ function getThermProgress() {
       //runs if post request fails
       console.log("this is the error", error)
     });
-    endImport();
+    // endImport();
 } // end getList
