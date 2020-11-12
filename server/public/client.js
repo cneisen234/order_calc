@@ -30,7 +30,7 @@ function getProgress() {
       console.log(estTime)
            $("#progress").append(
              `<p>The import for Siser reporting has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
-             <p>The import started at ${time} and will take apx ${min} minutes and ${seconds} seconds to complete</br></br>
+             <p>The import started on ${time} and will take apx ${min} minutes and ${seconds} seconds to complete</br></br>
     WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
            );
   setTimeout(() => {
@@ -62,7 +62,7 @@ function getArtProgress() {
             console.log(estTime);
                  $("#progress").append(
                    `<p>The import for the art room has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
-                                <p>The import started at ${time} and will take apx ${min} minutes and ${seconds} seconds to complete</br></br>
+                                <p>The import started on ${time} and will take apx ${min} minutes and ${seconds} seconds to complete</br></br>
     WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
                  );
     setTimeout(() => {
@@ -94,7 +94,7 @@ function getThermProgress() {
             console.log(estTime);
                $("#progress").append(
                  `<p>The import for the thermoflex plus has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
-                              <p>The import started at ${time} and will take apx ${min} minutes and ${seconds} seconds to complete</br></br>
+                              <p>The import started on ${time} and will take apx ${min} minutes and ${seconds} seconds to complete</br></br>
     WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
                );
     setTimeout(() => {
