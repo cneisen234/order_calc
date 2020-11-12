@@ -69,6 +69,7 @@ app.get("/progress", (req, res) => {
 
   function getReport() {
     async function accessSpreadsheet() {
+      try {
       const doc = new GoogleSpreadsheet(
         "1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI"
       );
@@ -129,6 +130,12 @@ app.get("/progress", (req, res) => {
         stopVar = true;
         return;
       }
+          console.log("rowCountGlobal", rowCountGlobal)
+        rowCountGlobal = String(rowCountGlobal)
+        res.status(201).send(rowCountGlobal);
+      } catch (err) {
+       console.log("this is the error", err);
+      }
     }
     setTimeout(() => {
       if (stopVar === true) {
@@ -172,6 +179,7 @@ app.get("/art", (req, res) => {
 
   function getArtReport() {
     async function accessSpreadsheet() {
+      try {
       const doc = new GoogleSpreadsheet(
         "1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI"
       );
@@ -208,6 +216,12 @@ app.get("/art", (req, res) => {
       } else {
         stopVar = true;
         return;
+      }
+          console.log("rowCountGlobal", rowCountGlobal)
+        rowCountGlobal = String(rowCountGlobal)
+        res.status(201).send(rowCountGlobal);
+      } catch (err) {
+       console.log("this is the error", err);
       }
     }
     setTimeout(() => {
