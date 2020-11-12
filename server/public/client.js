@@ -21,11 +21,16 @@ function getProgress() {
   })
     .then(function (response) {
       console.log("the response is", response)
-      let timeout = Number(response)
-      timeout *= 1000;
+      let time = moment().format("MMMM Do YYYY, h:mm:ss a");
+      let estTime = Number(response)
+      let timeout = estTime * 1000;
+      let min = Math.floor(estTime/60)
+      let seconds = estTime - 60 * Math.floor(min);
       console.log(timeout)
+      console.log(estTime)
            $("#progress").append(
              `<p>The import for Siser reporting has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
+             <p>The import started at ${time} and will take apx ${min} minutes and ${seconds} seconds to complete</br></br>
     WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
            );
   setTimeout(() => {
@@ -48,11 +53,16 @@ function getArtProgress() {
   })
     .then(function (response) {
       console.log("the response is", response)
-            let timeout = Number(response);
-            timeout *= 1000;
+            let time = moment().format("MMMM Do YYYY, h:mm:ss a");
+            let estTime = Number(response);
+            let timeout = estTime * 1000;
+            let min = Math.floor(estTime / 60);
+            let seconds = estTime - 60 * Math.floor(min);
             console.log(timeout);
+            console.log(estTime);
                  $("#progress").append(
                    `<p>The import for the art room has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
+                                <p>The import started at ${time} and will take apx ${min} minutes and ${seconds} seconds to complete</br></br>
     WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
                  );
     setTimeout(() => {
@@ -75,11 +85,16 @@ function getThermProgress() {
   })
     .then(function (response) {
       console.log("the response is", response)
-            let timeout = Number(response);
-            timeout *= 1000;
+            let time = moment().format("MMMM Do YYYY, h:mm:ss a");
+            let estTime = Number(response);
+            let timeout = estTime * 1000;
+            let min = Math.floor(estTime / 60);
+            let seconds = estTime - 60 * Math.floor(min);
             console.log(timeout);
+            console.log(estTime);
                $("#progress").append(
                  `<p>The import for the thermoflex plus has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
+                              <p>The import started at ${time} and will take apx ${min} minutes and ${seconds} seconds to complete</br></br>
     WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
                );
     setTimeout(() => {
