@@ -83,7 +83,6 @@ app.get("/progress", (req, res) => {
       let rowCount = sheet.rowCount;
       rowCountGlobal = rowCount;
       console.log(rowCount);
-      res.send(rowCount)
       if (offset <= rowCount) {
         console.log("and I'm running to");
         const rows = await promisify(sheet.getRows)({
@@ -140,11 +139,12 @@ app.get("/progress", (req, res) => {
       }
       offset += 10;
       accessSpreadsheet();
+      console.log("rowCountGlobal is", rowCountGlobal)
       console.log("offset is", offset);
       getReport();
     }, 10000);
     accessSpreadsheet()
-      .then(() => res.send("This worked!"))
+      .then(() => res.send(rowCountGlobal))
       .catch((error) => res.send(`Error: ${error}`));
   }
   getReport();
@@ -192,7 +192,6 @@ app.get("/art", (req, res) => {
       let rowCount = sheet.rowCount;
       rowCountGlobal = rowCount;
       console.log(rowCount);
-       res.send(rowCount);
       if (offset <= rowCount) {
         console.log("and I'm running to");
         const rows = await promisify(sheet.getRows)({
@@ -227,11 +226,12 @@ app.get("/art", (req, res) => {
       }
       offset += 10;
       accessSpreadsheet();
+      console.log("rowCountGlobal is", rowCountGlobal);
       console.log("offset is", offset);
       getArtReport();
     }, 10000);
     accessSpreadsheet()
-      .then(() => res.send("This worked!"))
+      .then(() => res.send(rowCountGlobal))
       .catch((error) => res.send(`Error: ${error}`));
   }
   getArtReport();
@@ -313,7 +313,6 @@ app.get("/therm", (req, res) => {
       let rowCount = sheet.rowCount;
       rowCountGlobal = rowCount;
       console.log(rowCount);
-      res.send(rowCount);
       if (offset <= rowCount) {
         console.log("and I'm running to");
         const rows = await promisify(sheet.getRows)({
@@ -389,11 +388,12 @@ app.get("/therm", (req, res) => {
       }
       offset += 10;
       accessSpreadsheet();
+      console.log("rowCountGlobal is", rowCountGlobal);
       console.log("offset is", offset);
       getThermReport();
     }, 10000);
     accessSpreadsheet()
-      .then(() => res.send("This worked!"))
+      .then(() => res.send(rowCountGlobal))
       .catch((error) => res.send(`Error: ${error}`));
   }
   getThermReport();
