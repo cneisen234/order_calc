@@ -6,6 +6,24 @@ $(document).ready(function () {
   // load existing list items on page load
 }); // end doc ready
 
+function endImport() {
+     $.ajax({
+       type: "GET",
+       url: "/stopthis",
+     }).then(function (response) {
+       $("#progress").empty();
+       $("#progress").append(`<p>The import has finished</p>`);
+         $("#thisclears").append(
+           `    <main class="col-lg-10" id="thisclears">
+            <button id="start" class="btn btn-light col-lg-3 col-md-12">Siser HTV Reporting</button>
+                        <button id="art" class="btn btn-light col-lg-3 col-md-12">Art Room</button>
+                        <button id="therm" class="btn btn-light col-lg-3 col-md-12">Thermoflex Plus</button>
+            <header id="time" class="col-lg-9 col-md-12"></header>
+        </main>`
+         );
+     });
+}
+
 function getProgress() {
   console.log("I am clicked")
   $("#progress").empty();
@@ -15,6 +33,7 @@ function getProgress() {
     url: "/progress",
   })
     .then(function (response) {
+      console.log(response)
   $("#progress").append(
     `<p>The import for Siser reporting has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
     WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
@@ -23,20 +42,7 @@ function getProgress() {
       //runs if post request fails
       console.log("this is the error", error)
     });
-    $.ajax({
-      type: "GET",
-      url: "/stopthis",
-    })
-      .then(function (response) {
-          $("#progress").empty();
-        $("#progress").append(
-          `<p>The import has finished</p>`
-        );
-      })
-      .catch(function (error) {
-        //runs if post request fails
-        console.log("this is the error", error);
-      });
+    endImport();
 } // end getList
 
 function getArtProgress() {
@@ -48,6 +54,7 @@ function getArtProgress() {
     url: "/art",
   })
     .then(function (response) {
+      console.log(response)
   $("#progress").append(
     `<p>The import for the art room has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
     WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
@@ -56,13 +63,7 @@ function getArtProgress() {
       //runs if post request fails
       console.log("this is the error", error)
     });
-     $.ajax({
-       type: "GET",
-       url: "/stopthis",
-     }).then(function (response) {
-       $("#progress").empty();
-       $("#progress").append(`<p>The import has finished</p>`);
-     });
+    endImport();
 } // end getList
 
 function getThermProgress() {
@@ -74,6 +75,7 @@ function getThermProgress() {
     url: "/therm",
   })
     .then(function (response) {
+      console.log(response)
   $("#progress").append(
     `<p>The import for the thermoflex plus has started, please refer to the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1LSxm-aJNqi1tOGBkvG_Qmh1IkQGgKSCbdOu08TrltfI/edit?ts=5fa2ff6e#gid=0" target="_blank">here</a></br></br>
     WARNING: Do not reload this page or start another import until the one currently running finishes</p>`
@@ -82,11 +84,5 @@ function getThermProgress() {
       //runs if post request fails
       console.log("this is the error", error)
     });
-     $.ajax({
-       type: "GET",
-       url: "/stopthis",
-     }).then(function (response) {
-       $("#progress").empty();
-       $("#progress").append(`<p>The import has finished</p>`);
-     });
+    endImport();
 } // end getList

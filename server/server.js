@@ -83,6 +83,7 @@ app.get("/progress", (req, res) => {
       let rowCount = sheet.rowCount;
       rowCountGlobal = rowCount;
       console.log(rowCount);
+      res.send(rowCount)
       if (offset <= rowCount) {
         console.log("and I'm running to");
         const rows = await promisify(sheet.getRows)({
@@ -135,9 +136,6 @@ app.get("/progress", (req, res) => {
     }
     setTimeout(() => {
       if (stopVar === true) {
-        app.get("/stopthis", (req, res) => {
-          console.log("I'm running stopthis")
-        });
         return;
       }
       offset += 10;
@@ -194,6 +192,7 @@ app.get("/art", (req, res) => {
       let rowCount = sheet.rowCount;
       rowCountGlobal = rowCount;
       console.log(rowCount);
+       res.send(rowCount);
       if (offset <= rowCount) {
         console.log("and I'm running to");
         const rows = await promisify(sheet.getRows)({
@@ -314,6 +313,7 @@ app.get("/therm", (req, res) => {
       let rowCount = sheet.rowCount;
       rowCountGlobal = rowCount;
       console.log(rowCount);
+      res.send(rowCount);
       if (offset <= rowCount) {
         console.log("and I'm running to");
         const rows = await promisify(sheet.getRows)({
