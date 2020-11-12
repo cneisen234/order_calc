@@ -145,7 +145,7 @@ app.get("/progress", (req, res) => {
     }, 10000);
     accessSpreadsheet()
       .then(() => res.send(rowCountGlobal))
-      .catch((error) => res.send(`Error: ${error}`));
+      .catch((error) => res.send(rowCountGlobal));
   }
   getReport();
 });
@@ -232,7 +232,7 @@ app.get("/art", (req, res) => {
     }, 10000);
     accessSpreadsheet()
       .then(() => res.send(rowCountGlobal))
-      .catch((error) => res.send(`Error: ${error}`));
+      .catch((error) => res.send(rowCountGlobal));
   }
   getArtReport();
 });
@@ -394,7 +394,7 @@ app.get("/therm", (req, res) => {
     }, 10000);
     accessSpreadsheet()
       .then(() => res.send(rowCountGlobal))
-      .catch((error) => res.send(`Error: ${error}`));
+      .catch((error) => res.send(rowCountGlobal));
   }
   getThermReport();
 });
