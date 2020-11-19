@@ -9,6 +9,15 @@ require("dotenv").config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("server/public"));
 
+let forcestop = false
+
+app.get("/forcestop", (req, res) => {
+  forcestop = true
+  setTimeout(() => {
+    forcestop = false
+  }, 20000);
+})
+
 const creds = {
   type: "service_account",
   project_id: "order-calc",
@@ -81,7 +90,7 @@ app.get("/progress", (req, res) => {
       let rowCount = sheet.rowCount;
       rowCountGlobal = rowCount;
       console.log(rowCount);
-      if (offset <= rowCount) {
+      if (offset <= rowCount && forcestop === false) {
         console.log("and I'm running to");
         const rows = await promisify(sheet.getRows)({
           offset: offset,

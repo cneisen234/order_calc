@@ -2,6 +2,7 @@ $(document).ready(function () {
   $("#start").on("click", getProgress);
   $("#art").on("click", getArtProgress);
   $("#therm").on("click", getThermProgress);
+  $("#forcestop").on("click", forceStop);
   // $("#start").on("click", test);
   // load existing list items on page load
 }); // end doc ready
@@ -10,6 +11,25 @@ function endImport() {
        $("#progress").empty();
        $("#progress").append(`<p>The import has finished</p>`);
 }
+
+function forceStop() {
+  console.log("I am clicked")
+    $('#progress').empty();
+    $("#progress").append(
+      `<p>The import has been forcefully stopped. Please wait apx 20 seconds before starting another import</p></br></br>`
+           
+    );
+  $.ajax({
+    type: "GET",
+    url: "/forcestop",
+  })
+    .then(function (response) {
+      
+          }).catch(function (error) {
+      //runs if post request fails
+      console.log("this is the error", error)
+    });
+} // end getList
 
 function getProgress() {
   console.log("I am clicked")
