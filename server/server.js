@@ -199,7 +199,7 @@ app.get("/art", (req, res) => {
       let rowCount = sheet.rowCount;
       rowCountGlobal = rowCount;
       console.log(rowCount);
-      if (offset <= rowCount) {
+      if (offset <= rowCount && forcestop === false) {
         console.log("and I'm running to");
         const rows = await promisify(sheet.getRows)({
           offset: offset,
@@ -320,7 +320,7 @@ app.get("/therm", (req, res) => {
         let rowCount = sheet.rowCount;
         rowCountGlobal = rowCount;
         console.log(rowCount);
-        if (offset <= rowCount) {
+        if (offset <= rowCount && forcestop === false) {
           console.log("and I'm running to");
           const rows = await promisify(sheet.getRows)({
             offset: offset,
