@@ -2,7 +2,7 @@
   "name": "order-calc",
   "private": false,
   "homepage": "https://orderapp.heattransferwarehouse.com/",
-  "repository": "git://github.com/cneisen234/affiliate_orders.git",
+  "repository": "git://github.com/cneisen234/order_calc.git",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
