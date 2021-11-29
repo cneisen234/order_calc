@@ -1,5 +1,7 @@
 {
-  "name": "order_calc",
+  "name": "order-calc",
+  "homepage": "https://orderapp.heattransferwarehouse.com/",
+  "repository": "git://github.com/cneisen234/affiliate_orders.git",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,6 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
     "dev": "nodemon server/server.js"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "keywords": [],
   "author": "",
